@@ -274,7 +274,10 @@ class RPMSync(object):
     def snap_unname(self, snapname):
         self.log.info('removing named snapshot')
         target = "{0}/snap/{1}/named/{2}".format(self.destination, self.reponame, snapname)
-        os.unlink(target)
+        try:
+            os.unlink(target)
+        except FileNotFoundError:
+            pass
         self.log.info('done removing named snapshot')
 
     def snap_repodata(self):
