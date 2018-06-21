@@ -177,12 +177,15 @@ class RPMSync(object):
         self.snap_packages()
         current = "{0}/snap/{1}/{2}".format(self.destination, self.reponame, self.date)
         latest = "{0}/snap/{1}/latest".format(self.destination, self.reponame)
+        timestamp = "{0}/snap/{1}/{2}/timestamp".format(self.destination, self.reponame, self.date)
         self.log.info("setting latest to current release")
         try:
             os.unlink(latest)
         except FileNotFoundError:
             pass
         os.symlink(current, latest)
+        with open(timestamp, 'w') as _timestamp:
+            _timestamp.write('{0}\n'.format(self.date))
         self.log.info('done creating snapshot')
 
     def snap_cleanup(self):

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pyreposync',
-    version='0.0.6',
+    version='0.0.7',
     description='PyReposync repository sync & snapshot tool',
     long_description="""
 PyReposync allows to sync and snaptshot arbitrary RPM repositories, without using rsync
